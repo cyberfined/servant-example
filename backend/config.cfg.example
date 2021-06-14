@@ -1,0 +1,88 @@
+development {
+    app {
+        port = 5000
+    }
+    
+    db {
+        host       = "127.0.0.1"
+        port       = 5432
+        user       = "user"
+        password   = "password"
+        database   = "developDbName"
+        poolSize   = 10
+    }
+
+    dbMate {
+        path          = "/usr/bin/dbmate"
+        migrationsDir = "db/migrations"
+    }
+    
+    jwt {
+        duration = "07:00:00" # dd:hh:mm
+        secret   = "developSecret"
+    }
+    
+    log {
+        file    = "stderr"
+        bufSize = 4096
+    }
+}
+
+test {
+    app {
+        port = 5000
+    }
+    
+    db {
+        host       = "127.0.0.1"
+        port       = 5432
+        user       = "user"
+        password   = "password"
+        database   = "testDbName"
+        poolSize   = 10
+    }
+
+    dbMate {
+        path          = "/usr/bin/dbmate"
+        migrationsDir = "db/migrations"
+    }
+    
+    jwt {
+        duration = "07:00:00" # dd:hh:mm
+        secret   = "secret"
+    }
+    
+    log {
+        disabled = true
+    }
+}
+
+production {
+    app {
+        port = 5000
+    }
+    
+    db {
+        host       = "127.0.0.1"
+        port       = 5432
+        user       = "user"
+        password   = "password"
+        database   = "productionDbName"
+        poolSize   = 10
+    }
+
+    dbMate {
+        path          = "/usr/bin/dbmate"
+        migrationsDir = "db/migrations"
+    }
+    
+    jwt {
+        duration = "07:00:00" # dd:hh:mm
+        secret   = "productionSecret"
+    }
+    
+    log {
+        file    = "logs/log"
+        bufSize = 4096
+    }
+}

@@ -1,0 +1,175 @@
+name:          backend
+version:       0.1.0.0
+synopsis:      Simple servant app
+description:   Simple servant app
+homepage:      https://github.com/cyberfined/servant-example
+bug-reports:   https://github.com/cyberfined/servant-example/issues
+author:        cyberfined
+maintainer:    cyberfined@protonmail.com
+copyright:     Copyright (c) cyberfined
+license:       BSD3
+license-file:  LICENSE
+category:      Web
+build-type:    Simple
+cabal-version: >= 1.12
+extra-source-files:
+    LICENSE
+    README.md
+
+source-repository head
+  type:     git
+  location: https://github.com/cyberfined/servant-example
+
+library backend-lib
+  exposed-modules:
+      Backend
+    , Backend.AppM
+    , Backend.Auth
+    , Backend.Config
+    , Backend.User.Model
+    , Backend.User.Statements
+  other-modules:
+      Backend.AppM.Logger
+    , Backend.AppM.LoggerContext
+    , Backend.AppM.Monad
+    , Backend.AppM.Session
+    , Backend.AppM.Validation
+    , Backend.Auth.AuthContext
+    , Backend.Common
+    , Backend.KeyError
+    , Backend.Proof.Named
+    , Backend.Response
+    , Backend.User.Handler
+    , Backend.User.Validation
+  hs-source-dirs:
+      src
+  ghc-options: -Wall
+  build-depends:
+      aeson >= 1.5 && < 2
+    , base >= 4.7 && < 5
+    , bytestring >= 0.10 && < 1
+    , contravariant >= 1.5 && < 2
+    , cryptonite >= 0.29 && < 1
+    , configurator >= 0.3 && < 1
+    , data-default-class >= 0.1 && < 1
+    , directory >= 1.3 && < 2
+    , email-validate >= 2.3 && < 3
+    , fast-logger >= 3 && < 4
+    , filepath >= 1.4 && < 2
+    , hasql >= 1.4 && < 2
+    , hasql-pool >= 0.5 && < 1
+    , hasql-transaction >= 1 && < 2
+    , hasqul >= 0.1 && < 1
+    , http-types >= 0.12 && < 1
+    , jwt >= 0.1 && < 1
+    , memory >= 0.16 && < 1
+    , monad-time >= 0.3 && < 1
+    , mtl >= 2.2 && < 3
+    , network >= 3.1 && < 4
+    , servant >= 0.18 && < 1
+    , servant-server >= 0.18 && < 1
+    , text >= 1.2 && < 2
+    , time >= 1.9 && < 2
+    , unordered-containers >= 0.2 && < 1
+    , validation-selective >= 0.1 && < 1
+    , wai >= 3.2 && < 4
+    , warp >= 3.3 && < 4
+  default-extensions:
+      DataKinds
+    , DeriveAnyClass
+    , DeriveGeneric
+    , DerivingStrategies
+    , DerivingVia
+    , FlexibleInstances
+    , GeneralizedNewtypeDeriving
+    , LambdaCase
+    , OverloadedStrings
+    , RecordWildCards
+    , StandaloneDeriving
+    , TypeApplications
+    , TypeOperators
+  default-language: Haskell2010
+
+executable backend
+  main-is: Main.hs
+  other-modules:
+      OptionsParser
+  hs-source-dirs:
+      app
+  ghc-options: -Wall
+  build-depends:
+      base >= 4.7 && < 5
+    , backend-lib >= 0.1 && < 1
+    , optparse-applicative >= 0.16 && < 1
+  default-extensions:
+      LambdaCase
+    , RecordWildCards
+  default-language: Haskell2010
+
+executable migrate
+  main-is: Main.hs
+  other-modules:
+      OptionsParser
+  hs-source-dirs:
+      migrate
+  ghc-options: -Wall
+  build-depends:
+      base >= 4.7 && < 5
+    , backend-lib >= 0.1 && < 1
+    , configurator >= 0.3 && < 1
+    , process >= 1.6 && < 2
+  default-extensions:
+      LambdaCase
+    , RecordWildCards
+  default-language: Haskell2010
+
+test-suite backend-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Controllers.AuthSpec
+    , Controllers.UserSpec
+    , Controllers.Helper
+    , Factories.User
+    , TimeFreezeM
+  hs-source-dirs:
+      tests
+  ghc-options: -Wall
+  default-extensions:
+      DeriveGeneric
+    , DerivingStrategies
+    , FlexibleInstances
+    , GeneralizedNewtypeDeriving
+    , LambdaCase
+    , OverloadedStrings
+    , RecordWildCards
+    , TypeApplications
+    , TypeSynonymInstances
+    , QuasiQuotes
+  build-depends:
+      aeson >= 1.5 && < 2
+    , base >= 4.7 && < 5
+    , backend-lib >= 0.1 && < 1
+    , bytestring >= 0.10 && < 1
+    , cryptonite >= 0.29 && < 1
+    , data-default-class >= 0.1 && < 1
+    , hasql >= 1.4 && < 2
+    , hasql-pool >= 0.5 && < 1
+    , hasql-transaction >= 1 && < 2
+    , hasqul >= 0.1 && < 1
+    , hspec >= 2.8 && < 3
+    , hspec-wai >= 0.11 && < 1
+    , hspec-wai-json >= 0.11 && < 1
+    , http-types >= 0.12 && < 1
+    , jwt >= 0.1 && < 1
+    , memory >= 0.16 && < 1
+    , monad-time >= 0.3 && < 1
+    , mtl >= 2.2 && < 3
+    , random >= 1.2 && < 2
+    , servant >= 0.18 && < 1
+    , servant-server >= 0.18 && < 1
+    , text >= 1.2 && < 2
+    , time >= 1.9 && < 2
+    , wai >= 3.2 && < 4
+    , wai-extra >= 3.1 && < 4
+  default-language: Haskell2010

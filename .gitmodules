@@ -1,0 +1,3 @@
+[submodule "hasqul"]
+	path = hasqul
+	url = git@github.com:cyberfined/hasqul.git

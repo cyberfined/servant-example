@@ -1,0 +1,58 @@
+name:          jwt
+version:       0.1.0.0
+synopsis:      JWT authentication
+description:   JWT authentication
+homepage:      https://github.com/cyberfined/servant-example
+bug-reports:   https://github.com/cyberfined/servant-example/issues
+author:        cyberfined
+maintainer:    cyberfined@protonmail.com
+copyright:     Copyright (c) cyberfined
+license:       BSD3
+license-file:  LICENSE
+category:      Authentication
+build-type:    Simple
+cabal-version: >= 1.12
+extra-source-files:
+    LICENSE
+    README.md
+
+source-repository head
+  type:     git
+  location: https://github.com/cyberfined/servant-example
+
+library
+  exposed-modules:
+      Crypto.Auth.JWT
+  hs-source-dirs:
+      src
+  ghc-options: -Wall
+  build-depends:
+      base >= 4.7 && < 5
+    , bytestring >= 0.10 && < 1
+    , cryptonite >= 0.29 && < 1
+    , aeson >= 1.5 && < 2
+    , time >= 1.9 && < 2
+    , base64-bytestring >= 1.2 && < 2
+    , memory >= 0.16 && < 1
+    , monad-time >= 0.3 && < 1
+  default-language: Haskell2010
+
+test-suite jwt-test
+  type: exitcode-stdio-1.0
+  main-is: Main.hs
+  hs-source-dirs:
+      tests
+  ghc-options: -Wall
+  default-extensions:
+      OverloadedStrings
+  build-depends:
+      aeson >= 1.5 && < 2
+    , base >= 4.7 && < 5
+    , cryptonite >= 0.29 && < 1
+    , HUnit >= 1.6 && < 2
+    , jwt >= 0.1 && < 1
+    , monad-time >= 0.3 && < 1
+    , mtl >= 2.2 && < 3
+    , text >= 1.2 && < 2
+    , time >= 1.9 && < 2
+  default-language: Haskell2010
